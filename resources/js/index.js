@@ -13,6 +13,9 @@ async function updateMessages(){
   chatBox.innerHTML = formattedMessages;
 }
 
+const MILLISECONDS_IN_ONE_SECOND = 1000;
+setInterval(updateMessages, MILLISECONDS_IN_ONE_SECOND);
+
 const serverURL = "https://it3049c-chat-application.herokuapp.com/messages";
 
 function fetchMessages(){
@@ -49,9 +52,6 @@ function formatMessage(message, myNameInput) {
   }
 }
 
-const MILLISECONDS_IN_TEN_SECONDS = 10000;
-setInterval(updateMessages, MILLISECONDS_IN_TEN_SECONDS);
-
 function sendMessages(username, text){
   const newMessage = {
     sender: username,
@@ -76,3 +76,5 @@ sendButton.addEventListener("click", function(sendButtonClickEvent) {
   sendMessages(sender,message);
   myMessage.value = "";
 });
+
+//Lab - Chatting App Storage
