@@ -2,6 +2,7 @@ const nameInput = document.getElementById("my-name-input");
 const myMessage = document.getElementById("my-message");
 const sendButton = document.getElementById("send-button");
 const chatBox = document.getElementById("chat");
+const saveButton = document.getElementById("save-button");
 
 async function updateMessages(){
   const messages = await fetchMessages();
@@ -68,7 +69,7 @@ function sendMessages(username, text){
   });
 }
 
-sendButton.addEventListener("click", function(sendButtonClickEvent) {
+sendButton.addEventListener("click", function(sendButtonClickEvent){
   sendButtonClickEvent.preventDefault();
   const sender = nameInput.value;
   const message = myMessage.value;
@@ -78,3 +79,20 @@ sendButton.addEventListener("click", function(sendButtonClickEvent) {
 });
 
 //Lab - Chatting App Storage
+saveButton.addEventListener("click", function(saveButtonClickEvent){
+  localStorage.setItem("username", nameInput.value);
+});
+
+// Use these to create a new instance with a "blank" local storage
+//myMessage.disabled = false;
+//localStorage.setItem("username", "");
+
+function checkUsernameSaved(){
+  if(localStorage.getItem("username") == ""){
+    myMessage.disabled = true;
+  } else{
+    myMessage.disabled = false;
+  }
+}
+
+setInterval(checkUsernameSaved, MILLISECONDS_IN_ONE_SECOND);
